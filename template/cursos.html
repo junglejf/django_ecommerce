@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous">
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
+    integrity="sha256-3h45mwconzsKjTUULjY+EoEkoRhXcOIU4l5YAw2tSOU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+    integrity="sha256-4hqlsNP9KM6+2eA8VUT0kk4RsMRTeS7QGHIM+MZ5sLY=" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"
+    integrity="sha256-zUQGihTEkA4nkrgfbbAM1f3pxvnWiznBND+TuJoUv3M=" crossorigin="anonymous"></script>
+
+
+  <title>Bootstrap Theme</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">OCA Cursos de Mecânica Automotiva</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="navbarCollapse">
+        <span class="navbar-toggle-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item ">
+            <a href="about.html" class="nav-link">Sobre Nós</a>
+          </li>
+          <li class="nav-item active">
+            <a href="cursos.html" class="nav-link">Cursos</a>
+          </li>
+          <li class="nav-item">
+            <a href="contato.html" class="nav-link">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Nosso Blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Header -->
+  <header id="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 m-auto text-center">
+          <h1>Nossos Cursos</h1>
+          <p>
+            Tem por objetivo formar o aluno de maneira completa para desenvolver competências relativas à montagem e
+            desmontagem de motores, embreagem, câmbio, dentre outros de forma que saiba identificar e solucionar
+            problemas automotivos. </p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Cursos -->
+  <section id="services" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div id="accordion">
+            <div class="card text-center">
+              <div class="card-header bg-dark text-white">
+                <h3>Mecânica Avançado</h3>
+              </div>
+              <div class="card-body">
+                <h4 div class="card-title"> R$ 199,99 por mês</h4>
+
+                <ul class="list-group">
+                  <li class="list-group-item"><i class="fas fa-check"></i> Acesso
+                    vitalício
+                  </li>
+                  <li class="list-group-item"><i class="fas fa-check"></i> Suporte Individual
+                    e Personalizado</li>
+                  <li class="list-group-item"><i class="fas fa-check"></i> Totalmente
+                    On-Demand</li>
+                  <li class="list-group-item"><i class="fas fa-check"></i> Aprenda com quem está
+                    no mercado</li>
+                  <li class="list-group-item"><i class="fas fa-check"></i> Emissão de Certificado </li>
+                </ul>
+                <a href="#compra" class="btn btn-danger btn-block margin mt-2" data-toggle="modal">Comprar</a>
+              </div>
+              <div class="card-footer text-muted">
+                Plano Anual
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-header bg-dark text-white">
+              <h3>Mecânica Intermediário</h3>
+            </div>
+            <div class="card-body">
+              <h4 div class="card-title"> R$ 99,99 por mês</h4>
+
+              <ul class="list-group">
+                <li class="list-group-item"><i class="fas fa-check"></i> Acesso
+                  vitalício</li>
+                <li class="list-group-item"><i class="fas fa-check"></i> Suporte Individual
+                  e Personalizado</li>
+                <li class="list-group-item"><i class="fas fa-check"></i> Totalmente
+                  On-Demand</li>
+                <li class="list-group-item"><i class="fas fa-check"></i> Aprenda com quem está
+                  no mercado</li>
+                <li class="list-group-item"><i class="fas fa-check"></i> Emissão de Certificado </li>
+              </ul>
+              <a href="#compra" class="btn btn-danger btn-block margin mt-2" data-toggle="modal">Comprar</a>
+            </div>
+            <div class="card-footer text-muted">
+              Plano Anual
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-header bg-dark text-white">
+              <h3>Mecânica Iniciante</h3>
+            </div>
+            <div class="card-body">
+              <h4 div class="card-title"> R$ 49,99 por mês</h4>
+
+              <ul class="list-group">
+                <li class="list-group-item"><i class="fas fa-check"></i> Acesso
+                  vitalício</li>
+                <li class="list-group-item"><i class="fas fa-check"></i> Suporte Individual
+                  e Personalizado</li>
+                <li class="list-group-item"><i class="fas fa-check"></i> Totalmente
+                  On-Demand</li>
+                <li class="list-group-item"><i class="fas fa-check"></i> Aprenda com quem está
+                  no mercado</li>
+                <li class="list-group-item"><i class="fas fa-check"></i> Emissão de Certificado </li>
+              </ul>
+              <a href="#compra" class="btn btn-danger btn-block margin mt-2" data-toggle="modal">Comprar</a>
+            </div>
+            <div class="card-footer text-muted">
+              Plano Anual
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos-->
+  <section id="testimonials" class="p-4 bg-dark text-white">
+    <div class="container">
+      <h2 class="text-center">Depoimentos <i class="fa fa-thumbs-up"></i></h2>
+
+      <div class="row text-center">
+        <div class="col">
+          <div class="slider">
+            <div>
+              <blockquote class="blockquote">
+                <p class="mb-0">
+                  Gostaria de salientar meu contentamento e satisfação com o curso de uma forma geral.
+                </p>
+                <footer class="blockquote-footer">
+                  Jonas Doblo de <cite title="Company 1">Rio de Janeiro</cite>
+                </footer>
+              </blockquote>
+            </div>
+            <div>
+              <blockquote class="blockquote">
+                <p class="mb-0">
+                  Bom, em primeiro lugar eu gostaria de agradecer aos idealizadores do ecid pois na região onde moro não
+                  tem nenhuma instituição com o curso de Mecânica Intermediário e como eu trabalho nesse ramo foi muito
+                  bom realizar o curso com vocês pois estou chegando ao final e com certeza novos cursos irei ingressar
+                  para ser reconhecido ainda mais na industria onde trabalho, Obrigado a todos!
+                </p>
+                <footer class="blockquote-footer">
+                  Jorge Efim de <cite title="Company 2">São Paulo</cite>
+                </footer>
+              </blockquote>
+            </div>
+            <div>
+              <blockquote class="blockquote">
+                <p class="mb-0">
+                  No começo tinha um pouco de dúvida na qualidade do curso devido ser por distância, mas agora vejo que
+                  o ensino é muito bom apesar de ser on-line. Difícil é enfatizar isso para as pessoas que não conhece o
+                  curso e o modo de ensino, é interessante eu divulgar no site meu positivo comentário do curso
+                </p>
+                <footer class="blockquote-footer">
+                  Samanta Albuquerque de <cite title="Company 3">Niterói</cite>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="p-5 bg-dark text-white">
+    <div class="container">
+      <h1 class="text-center"> Perguntas Frequentes <i class="fa fa-question-circle" aria-hidden="true"></i></h1>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <a href="#collapseOne" data-toggle="collapse" data-parent="accordion">
+                    Pra quem são os Cursos ?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse">
+                <div class="card-body">
+                  Sim, é para total iniciantes, estudantes e profissionais.
+                  Sim, é para pessoas que amam desafios e não desistem no primeiro problema.
+                  Sim, é para pessoas que desejam sucesso na carreira e não são acomodadas querendo sempre mais.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <a href="#collapseTwo" data-toggle="collapse" data-parent="accordion">
+                    Para Quem Não É o Curso?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse">
+                <div class="card-body">
+                  Não é para pessoas que não gostam de desafios.
+                  Não é para pessoas que desistem fácil a qualquer problema.
+                  Não é para pessoas que acham que programar se aprende em 1 dia.
+                  Não é para pessoas que não gostam de estudar e correr atrás.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <a href="#collapseSeven" data-toggle="collapse" data-parent="accordion">
+                    Como obtenho suporte a dúvidas?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseSeven" class="collapse">
+                <div class="card-body">
+                  Na área on-line de estudos possuí em baixo de cada aula os campos para perguntas e respostas, onde
+                  você postara a sua dúvida e logo responderei e ajudarei você exclusivamente e individualmente.
+                  Após realizar as inscrições você também terá direito a entrar para o nosso grupo de suporte no
+                  Facebooks, Telegram e WhatsApp. E também pode entrar em contato pela aba <a href="contato.html"
+                    class="">CONTATO</a>.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <a href="#collapseThree" data-toggle="collapse" data-parent="accordion">
+                    Conteúdo me ajuda no mercado de trabalho?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse">
+                <div class="card-body">
+                  Sim, é extamente nisso que os cursos são focado, na experiência prática dos profissionais. O conteúdo
+                  é produzido por profissionais experientes da área.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <a href="#collapseFour" data-toggle="collapse" data-parent="accordion">
+                    Meus dados (nome, e-mail, CPF) estão seguros?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseFour" class="collapse">
+                <div class="card-body">
+                  Sim. Estão 100% seguros.
+                  Todas essas informações são utilizadas apenas internamente, para emissão de nota fiscal, compra,
+                  intituição bancária e prevenção de fraudes.
+                  Nada será vendido ou repassado a terceiros, pois zelamos pela confiança depositada em nossos produtos.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <a href="#collapseFive" data-toggle="collapse" data-parent="accordion">
+                    Qual a garantia de que receberei o curso?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseFive" class="collapse">
+                <div class="card-body">
+                  Os cursos utilizam a plataforma de vendas Hotmart, que consideramos a melhor e mais segura plataforma
+                  de vendas do Brasil.
+                  Caso você não receba o acesso no prazo estipulado, o Hotmart garante a devolução de 100% do seu
+                  dinheiro investido, sem preocupações.
+                  E você ainda ganha garantia incondicional de até 7 dias para desistir da compra!
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <a href="#collapseSix" data-toggle="collapse" data-parent="accordion">
+                    O Certificado tem custo?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseSix" class="collapse">
+                <div class="card-body">
+                  Não, o certificado está incluso no valor da inscrição e você irá imprimir o certificado sem nenhum
+                  custo a mais.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <a href="#collapseEight" data-toggle="collapse" data-parent="accordion">
+                    Eu posso baixar as aulas?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseEight" class="collapse">
+                <div class="card-body">
+                  Sim, você pode assistir a todo o curso on-line ou caso tenha problemas com a sua internet poderá
+                  baixando as aulas para seu computador ou smartphone e podendo assistir sem ter acesso a internet
+                  enquanto você tiver acesso a plataforma.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="compra" displayed="false">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-warning">
+          <span class="modal-title" >Você foi sorteado e ganhou 1 semana grátis cadastradando-se agora!!!!</span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="id-form" action="">
+            <fieldset class="form-group">
+              <legend class="font-weight-bold">Informações Pessoais</legend>
+
+              <div class="form-group row">
+                <label for="nome" class="col-form-label col-lg-2 text-lg-right text-left font-weight-bold">Nome</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control form-control-sm" id="nome" placeholder="Informe seu nome">
+                  <div class="invalid-feedback">
+                    Este campo deve ser informado.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-lg-2 text-lg-right text-left font-weight-bold">Sexo</label>
+                <div class="col-lg-10">
+                  <div class="form-check">
+                    <input id="sexo-masc" type="radio" name="sexo" value"M" class="form-check-input">
+                    <label for="sexo-masc" class="form-check-label">
+                      Masculino
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input id="sexo-fem" type="radio" name="sexo" value"F" class="form-check-input">
+                    <label for="sexo-fem" class="form-check-label">
+                      Feminino
+                    </label>
+                  </div>
+                  <div id="sexo-feedback" class="invalid-feedback">
+                    Este campo deve ser informado.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email"
+                  class="col-form-label col-lg-2 text-lg-right text-left font-weight-bold">email</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control form-control-sm" id="email"
+                    placeholder="Informe seu email">
+                  <div class="invalid-feedback">
+                    Este campo deve ser informado.
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="form-group" style="margin-bottom: 0px;">
+              <legend class="font-weight-bold">Informações do curso/Excursão</legend>
+              <div class="form-group row">
+                <label for="curso"
+                  class="col-form-label col-lg-2 text-lg-right text-left font-weight-bold">curso</label>
+                <div class="col-lg-10">
+                  <select class="form-control form-control-sm" id="curso">
+                    <option value="">--- Escolha seu curso ---</option>
+                    <option value="1">Avançado</option>
+                    <option value="2">Intermediário</option>
+                    <option value="3">Iniciante</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Este campo deve ser informado.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-lg-6 text-lg-right text-left font-weight-bold">Por Onde você descobriu a OCA</label>
+                <div class="col-lg-10" >
+                  <div class="form-check">
+                    <input id="Facebook" type="checkbox" name="Facebook" class="form-check-input conhecimento">
+                    <label for="Facebook" class="form-check-label">
+                      Facebook 
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input id="Google" type="checkbox" name="Google" class="form-check-input conhecimento">
+                    <label for="Google" class="form-check-label">
+                      Google
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input id="Outros" type="checkbox" name="Outros" class="form-check-input conhecimento">
+                    <label for="Outros" class="form-check-label">
+                      Outros 
+                    </label>
+                  </div>
+                  <div id="conhecimento-feedback" class="invalid-feedback">
+                    Este campo deve ser informado.
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-group row">
+              <div class="col-lg-10 offset-lg-2">
+                <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Footer-->
+  <footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p>Copyright &copy; <span id="year"></span> OCA</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Ano
+    $("#year").text(new Date().getFullYear());
+    $('.slider').slick({
+      infinite: true, // rolagem inifinita
+      slideToShow: 1,
+      slideToScroll: 1
+
+    })
+    //$(document).ready(function () {
+      //$('#compra').modal('show');
+    //});
+    $(window).scroll(function() {
+       if ($(document).scrollTop() > 500 && $("#compra").attr("displayed") === "false") {
+         $('#compra').modal('show');
+         $("#compra").attr("displayed", "true");
+       }
+       if ($(document).scrollTop() < 50 && $("#compra").attr("displayed") === "true") {
+         $('#compra').modal('show');
+         $("#compra").attr("displayed", "false");
+       }
+
+     });
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip({
+        boundary: 'window'
+      });
+      $('[data-toggle="popover"]').popover();
+
+      // document.querySelector("#nome").addEventListener("blur", function() { nomeValidoFunction() }, false)
+      document.querySelector("#id-form").addEventListener("submit", function (e) {
+        tudoValidoFunction(e)
+      }, false)
+    });
+
+    function tudoValidoFunction(e) {
+      e.preventDefault()
+
+      let nome_valido = nomeValidoFunction()
+      let sexo_valido = sexoValidoFunction()
+      let email_valido = emailValidoFunction()
+      let curso_valido = cursoValidoFunction()
+      let conhecimento_valida = conhecimentoValidaFunction()
+
+      if (nome_valido && sexo_valido && curso_valido && conhecimento_valida && email_valido) {
+        alert("Tudo ok!")
+        // document.querySelector("#id-form").submit()
+      } else {
+        alert("Deu erro!")
+      }
+    }
+
+    function conhecimentoValidaFunction() {
+      let Facebook = document.querySelector("#Facebook")
+      let Google = document.querySelector("#Google")
+      let Outros = document.querySelector("#Outros")
+
+      let conhecimento_feedback = document.querySelector("#conhecimento-feedback")
+
+      let botoes = document.querySelectorAll("input.conhecimento:checked")
+      if (botoes.length === 0) {
+        Facebook.classList.add("is-invalid")
+        Facebook.classList.remove("is-valid")
+        Google.classList.add("is-invalid")
+        Google.classList.remove("is-valid")
+        Outros.classList.add("is-invalid")
+        Outros.classList.remove("is-valid")
+        conhecimento_feedback.classList.add("d-block")
+        return false
+      } else {
+        Facebook.classList.remove("is-invalid")
+        Facebook.classList.add("is-valid")
+        Google.classList.remove("is-invalid")
+        Google.classList.add("is-valid")
+        Outros.classList.remove("is-invalid")
+        Outros.classList.add("is-valid")
+        conhecimento_feedback.classList.remove("d-block")
+        return true
+      }
+    }
+
+    function cursoValidoFunction() {
+      alert("cursoValido")
+      let curso = document.querySelector("#curso")
+
+      if (curso.value === '') {
+        curso.classList.add("is-invalid")
+        curso.classList.remove("is-valid")
+        return false
+      } else {
+        curso.classList.remove("is-invalid")
+        curso.classList.add("is-valid")
+        return true
+      }
+    }
+
+    function sexoValidoFunction() {
+      let sexo_masc = document.querySelector("#sexo-masc")
+      let sexo_fem = document.querySelector("#sexo-fem")
+      let sexo_feedback = document.querySelector("#sexo-feedback")
+
+      let botoes = document.querySelectorAll("input[name='sexo']:checked")
+      if (botoes.length === 0) {
+        sexo_masc.classList.add("is-invalid")
+        sexo_masc.classList.remove("is-valid")
+        sexo_fem.classList.add("is-invalid")
+        sexo_fem.classList.remove("is-valid")
+        sexo_feedback.classList.add("d-block")
+        return false
+      } else {
+        sexo_masc.classList.remove("is-invalid")
+        sexo_masc.classList.add("is-valid")
+        sexo_fem.classList.remove("is-invalid")
+        sexo_fem.classList.add("is-valid")
+        sexo_feedback.classList.remove("d-block")
+        return true
+      }
+    }
+
+    function nomeValidoFunction() {
+      alert("nomeValido")
+      let nome = document.querySelector("#nome")
+
+      if (nome.value === '') {
+        nome.classList.add("is-invalid")
+        nome.classList.remove("is-valid")
+        return false
+      } else {
+        nome.classList.remove("is-invalid")
+        nome.classList.add("is-valid")
+        return true
+      }
+    }
+    function emailValidoFunction() {
+      alert("emailValido")
+      let email = document.querySelector("#email")
+
+      if (email.value === '') {
+        email.classList.add("is-invalid")
+        email.classList.remove("is-valid")
+        return false
+      } else {
+        email.classList.remove("is-invalid")
+        email.classList.add("is-valid")
+        return true
+      }
+    }
+  </script>
+</body>
+
+</html>
