@@ -247,6 +247,20 @@
     </div>
   </section>
 
+    <!--TESTE CONTEUDO PREMIUM PRA USARIO LOGADOOOOOOO-->
+          <div class='container'>
+            {% if request.user.is_authenticated %}
+            <div class='row'>
+                <div class='col'>
+                    <h1>Premium</h1>
+                    <p>{{ premium_content }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+  <!--TESTE CONTEUDO PREMIUM PRA USARIO LOGADOOOOOOO-->
+
+  
   <!--Footer-->
   <footer id="main-footer" class="text-center p-4">
     <div class="container">

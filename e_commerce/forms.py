@@ -26,7 +26,7 @@ class ContactForm(forms.Form):
                     "placeholder": "Digite sua mensagem"
                 }
             )
-)
+    )
     
     def clean_email(self):
         email = self.cleaned_data.get("email")
