@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="br">
 
@@ -20,7 +21,8 @@
     integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous">
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lig htbox/5.3.0/ekko-lightbox.min.js"></script>
-
+  <!-- TEstando a figura-->
+  <link rel='stylesheet' href='{% static "css/main.css" %}'>
   <title>Bootstrap Theme</title>
 </head>
 
@@ -52,6 +54,7 @@
       </div>
     </div>
   </nav>
+
   <section id="showcase">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -248,7 +251,17 @@
   </section>
 
     <!--TESTE CONTEUDO PREMIUM PRA USARIO LOGADOOOOOOO-->
-          <div class='container'>
+        <div class='text-center'>
+            <h1>{{ title }}</h1>
+            <p>{{ content }}</p>
+        </div>
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    <img src="{% static 'img/lights.jpg' %}" class='img-fluid' />
+                    <p>{{ content }}</p> 
+                </div>
+            </div>
             {% if request.user.is_authenticated %}
             <div class='row'>
                 <div class='col'>
