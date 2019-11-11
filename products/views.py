@@ -12,6 +12,7 @@ class ProductFeaturedListView(ListView):
 class ProductFeaturedDetailView(DetailView):
     queryset = Product.objects.all().featured()
     template_name = "products/featured-detail.html"
+    
 class ProductListView(ListView):
     #traz todos os produtos do banco de dados sem filtrar nada 
     queryset = Product.objects.all()
