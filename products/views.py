@@ -27,7 +27,7 @@ class ProductDetailView(DetailView):
     queryset = Product.objects.all()
     template_name = "products/detail.html"
     
-    def get_context_data(self):
+    def get_context_data(self,*args, **kwargs):
         context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
         print(context)
         return context
@@ -36,8 +36,8 @@ class ProductDetailView(DetailView):
 def product_detail_view(request, pk= None, *args, **kwargs):
     print(args)
     print(kwargs)
+    #instance = Product.objects.get(pk = pk) #get the object id
     instance = get_object_or_404(Product, pk = pk)
-    queryset = Product.objects.all()
     context = {
         'object': instance
     }
