@@ -1,5 +1,6 @@
 from django.db import models
-
+from .utils import unique_slug_generator
+from django.db.models.signals import pre_save
 # Create your models here.
 
 class ProductManager(models.Manager):
@@ -26,7 +27,7 @@ class Product(models.Model): #product_category
     image       = models.ImageField(upload_to = 'products/', null = True, blank = True)
     featured    = models.BooleanField(default = False)
     active      = models.BooleanField(default = True)
-    slug        = models.SlugField(unique = True)
+    slug        = models.SlugField(blank = True, unique = True)
     
     objects = ProductManager()
     
@@ -40,3 +41,9 @@ class ProductQuerySet(models.query.QuerySet):
 
     def featured(self):
         return self.filter(featured=True, active=True)
+
+def product_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(product_pre_save_receiver, sender = Product)
