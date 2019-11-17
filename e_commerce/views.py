@@ -18,7 +18,7 @@ def about_page(request):
         "title":" Página sobre nós",
         "content":"Bem-vindo a página sobre nós"
     }
-    return render(request, "about/about.html", context)
+    return render(request, "about/view.html", context)
 
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
@@ -35,7 +35,7 @@ def contact_page(request):
         print(request.POST.get('Nome_Completo'))
         print(request.POST.get('email'))
         print(request.POST.get('Mensagem'))
-    return render(request, "contact/contact.html", context)
+    return render(request, "contact/view.html", context)
 
 def blog_page(request):
     context = {

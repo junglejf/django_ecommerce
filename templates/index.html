@@ -1,4 +1,32 @@
+{% extends "base.html" %}
 {% load static %}
+<title>Home Page Template</title>
+
+
+{% block content %}
+    <!-- Aqui vai tudo que é referente a home_page  -->
+            <div class='text-center'>
+            <h1>{{ title }}</h1>
+            <p>{{ content }}</p>
+        </div>
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    <img src="{% static 'img/lights.jpg' %}" class='img-fluid' />
+                    <p>{{ content }}</p> 
+                </div>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class='row'>
+                <div class='col'>
+                    <h1>Premium</h1>
+                    <p>{{ premium_content }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+{% endblock %}
+
 <!DOCTYPE html>
 <html lang="br">
 
@@ -251,26 +279,7 @@
   </section>
 
     <!--TESTE CONTEUDO PREMIUM PRA USARIO LOGADOOOOOOO-->
-        <div class='text-center'>
-            <h1>{{ title }}</h1>
-            <p>{{ content }}</p>
-        </div>
-        <div class='container'>
-            <div class='row'>
-                <div class='col'>
-                    <img src="{% static 'img/lights.jpg' %}" class='img-fluid' />
-                    <p>{{ content }}</p> 
-                </div>
-            </div>
-            {% if request.user.is_authenticated %}
-            <div class='row'>
-                <div class='col'>
-                    <h1>Premium</h1>
-                    <p>{{ premium_content }}</p>
-                </div>
-            </div>
-            {% endif %}
-        </div>
+
   <!--TESTE CONTEUDO PREMIUM PRA USARIO LOGADOOOOOOO-->
 
   
