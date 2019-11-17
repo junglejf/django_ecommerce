@@ -31,6 +31,9 @@ class Product(models.Model): #product_category
     
     objects = ProductManager()
     
+    def get_absolute_url(self):
+        return "/products/{slug}/".format(slug = self.slug)
+    
     #exibir o nome do produto
     def __str__(self):
         return self.title
