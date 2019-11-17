@@ -2,10 +2,15 @@
 {% load static %}
 <title>Home Page Template</title>
 
+{% block base_head %}
+
+    <link rel='stylesheet' href='{% static "css/main.css" %}'>
+
+{% endblock base_head %}
 
 {% block content %}
     <!-- Aqui vai tudo que é referente a home_page  -->
-            <div class='text-center'>
+        <div class='text-center'>
             <h1>{{ title }}</h1>
             <p>{{ content }}</p>
         </div>

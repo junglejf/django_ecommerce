@@ -6,8 +6,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Base Template</title>
+        {% include 'base/css.html'%} <!--informa o caminho do css -->
+        {% block base_head %} 
+        {% endblock base_head %}
     </head>
     <body>
-        {% block content %} {% endblock %}
+
+        {% include 'base/navbar.html' %}
+        {% block content %} 
+        {% endblock %}
+        {% include 'base/js.html'%} <!--informa o caminho do javascript-->
+        
     </body>
 </html>

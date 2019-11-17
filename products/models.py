@@ -29,7 +29,7 @@ class Product(models.Model): #product_category
     active      = models.BooleanField(default = True)
     slug        = models.SlugField(blank = True, unique = True)
     
-    objects = ProductManager()
+    objects = ProductManager()      
     
     def get_absolute_url(self):
         return "/products/{slug}/".format(slug = self.slug)
