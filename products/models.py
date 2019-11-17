@@ -26,7 +26,7 @@ class Product(models.Model): #product_category
     image       = models.ImageField(upload_to = 'products/', null = True, blank = True)
     featured    = models.BooleanField(default = False)
     active      = models.BooleanField(default = True)
-    slug        = models.SlugField()
+    slug        = models.SlugField(unique = True)
     
     objects = ProductManager()
     
