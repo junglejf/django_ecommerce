@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.urls import path, include
-from .views import home_page, about_page, contact_page, blog_page, courses_page, login_page, register_page
+from .views import home_page, about_page, contact_page, blog_page, courses_page, login_page, register_page, logout_page
 
 urlpatterns = [
     path('', home_page,name='home'),
@@ -29,7 +29,8 @@ urlpatterns = [
     path('cursos/', courses_page,name='cursos'),
     path('about/', about_page, name='about'),
     path('contact/', contact_page, name='contact'),
-    path('login/', login_page, name='login'),    
+    path('login/', login_page, name='login'),  
+    path('logout/', logout_page, name='logout'),  
     path('register/', register_page, name='register'),
     path('products/', include("products.urls", namespace="products")),
     
