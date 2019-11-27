@@ -22,16 +22,16 @@ from django.urls import path, include
 from .views import home_page, about_page, contact_page, blog_page, courses_page, login_page, register_page
 
 urlpatterns = [
-    path('', home_page),
+    path('', home_page,name='home'),
 
     path('admin/', admin.site.urls),
-    path('blog/', blog_page),
-    path('cursos/', courses_page),
-    path('about/', about_page),
-    path('contact/', contact_page),
-    path('login/', login_page),    
-    path('register/', register_page),
-    path('product/', include("products.urls")),
+    path('blog/', blog_page, name='blog'),
+    path('cursos/', courses_page,name='cursos'),
+    path('about/', about_page, name='about'),
+    path('contact/', contact_page, name='contact'),
+    path('login/', login_page, name='login'),    
+    path('register/', register_page, name='register'),
+    path('products/', include("products.urls", namespace="products")),
     
 
 ]
