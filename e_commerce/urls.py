@@ -31,7 +31,7 @@ urlpatterns = [
     path('contact/', contact_page),
     path('login/', login_page),    
     path('register/', register_page),
-    path('products/', include("products.urls")),
+    path('product/', include("products.urls")),
     
 
 ]
