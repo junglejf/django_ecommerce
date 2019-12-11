@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+{% block content %} 
+
+<title> Cadastro de Produtos </title>
+</head>
+
+    <div class='text-center' class="fas fa-box fa-3x">
+        <h1>{{ title }}</h1>
+        <h2>PAINEL DO CADASTRO DE PRODUTOS</h2>
+    </div>
+    <div class='container'>
+        <div class='row'>
+            <div class='col'>
+                <p>{{ content }}</p>
+                <div class='col-sm-6 col-12'>
+                <form method='POST'> {% csrf_token %}
+                   {{ form }}
+                    <button type='submit' class='btn btn-default'>Enviar</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

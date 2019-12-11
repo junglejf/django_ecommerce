@@ -2,9 +2,29 @@
 {% extends "base.html" %}
 
 {% block content %}
+ <div class='col-2 col-1'>
     {{ object.title }} 
     {{ object.description }} 
+   
     {% if object.image %}
         <img src='{{ object.image.url }}' class='img-fluid'/>
     {% endif %}
+    </div>
+
+        <div class='container'>
+        <div class='row'>
+            <div class='col'>
+                <p>{{ content }}</p>
+                <div class='col-sm-6 col-12'>
+                <form method='POST'> {% csrf_token %}
+                    <h2> XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxx</h2>
+
+                   {{ form }}
+                    <button type='submit' class='btn btn-default'>Enviar</button>
+                    <h2> aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii</h2>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}

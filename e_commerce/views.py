@@ -2,15 +2,20 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from .forms import ContactForm, LoginForm, RegisterForm
-
+from products.forms import ProductForm
 
 def home_page(request):
     context = {
         "title":" Página principal",
         "content":"Bem-vindo a página principal"
     }
+    context["usuario"] = "Seja bem vindo "+request.user.username+ " !!!"
     if request.user.is_authenticated:
         context["premium_content"] = "Você é um usuário Premium"
+
+    if request.user.is_authenticated and request.user.is_staff:
+        context["usuario"] += " Você possui funções administrativas <><><>"
+
     return render(request, "index.html", context)
 
 def about_page(request):
@@ -51,7 +56,7 @@ def courses_page(request):
         "content":"Bem-vindo a página de courses"
     }
     return render(request, "cursos/cursos.html", context)
-
+User = get_user_model()
 def login_page(request):
     form = LoginForm(request.POST or None)
     context = {
@@ -59,6 +64,7 @@ def login_page(request):
               }
     print("User logged in")
     print(request.user.is_authenticated)
+    print("USer ------>>>>>>"+str(User))
     if form.is_valid():
         print(form.cleaned_data)
         username = form.cleaned_data.get("username")
@@ -84,7 +90,7 @@ def logout_page(request):
     logout(request)
     return render(request, "auth/logout.html", context)
 
-User = get_user_model()
+
 def register_page(request):
     form = RegisterForm(request.POST or None)
     context = {
@@ -98,3 +104,33 @@ def register_page(request):
         new_user = User.objects.create_user(username, email, password)
         print(new_user)
     return render(request, "auth/register.html", context)
+
+def cadastra_produto(request):
+    if request.POST:
+        produto_id = request.POST.get('produto_id')
+        print(produto_id)
+        if produto_id:
+            produto = get_object_or_404(Product, pk=produto_id)
+            produto_form = ProductForm(request.POST, instance=produto)
+        else:
+            produto_form = ProductForm(request.POST)
+
+        if produto_form.is_valid():
+            produto = produto_form.save()
+            if produto_id:
+                messages.add_message(request, messages.INFO, 'Produto alterado com sucesso!')
+            else:
+                messages.add_message(request, messages.INFO, 'Produto cadastrado com sucesso!')
+            return redirect('produto:exibe_produto', id=produto.id)
+        else:
+            messages.add_message(request, messages.ERROR, 'Corrija o(s) erro(s) abaixo.')
+    else:
+        produto_form = ProductForm()
+
+    return render(request, 'cadprod/cadprod.html', {'form': produto_form })
+
+def edita_produto(request, id):
+    produto = get_object_or_404(Product, pk=id)
+    produto_form = ProductForm(instance=produto)
+    produto_form.fields['products_product_id'].initial = id
+    return render(request, 'cadprod/cadprod.html', {'form': produto_form })

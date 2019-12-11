@@ -11,7 +11,7 @@ class CategoryManager(models.Manager):
         return CategoryQuerySet(self.model, using=self._db)
 
     def all(self):
-        return self.get_queryset().active()
+        return self.get_queryset().all()
 
     #def featured(self):
         #return self.get_queryset().filter(featured = True)
@@ -40,11 +40,12 @@ class Category(models.Model):
 
 
 class CategoryQuerySet(models.query.QuerySet):
-    def active(self):
-        return self.filter(active=True)
+    pass
+    #def active(self):
+     #   return self.filter(active=True)
 
-    def featured(self):
-        return self.filter(featured=True, active=True)
+    #def featured(self):
+     #   return self.filter(featured=True, active=True)
 
 def category_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
@@ -52,6 +53,8 @@ def category_pre_save_receiver(sender, instance, *args, **kwargs):
 
 pre_save.connect(category_pre_save_receiver, sender = Category)
 
+### MODELO PRODUTO ##########
+#MANAGER
 class ProductManager(models.Manager):
     def get_queryset(self):
         return ProductQuerySet(self.model, using=self._db)
@@ -69,6 +72,7 @@ class ProductManager(models.Manager):
             return qs.first()
         return None
 
+#PRODUTO
 class Product(models.Model): #product_category
     title       = models.CharField(max_length=120)
     description = models.TextField()
@@ -77,10 +81,11 @@ class Product(models.Model): #product_category
     featured    = models.BooleanField(default = False)
     active      = models.BooleanField(default = True)
     slug        = models.SlugField(blank = True, unique = True)
+    category   = models.ForeignKey(Category, related_name = 'products',on_delete=models.DO_NOTHING)
+    reg_date = models.DateField(null=True)
 
+    objects = ProductManager() 
 
-    objects = ProductManager()      
-    
     def get_absolute_url(self):
         #return "/products/{slug}/".format(slug = self.slug)
         return reverse("products:detail", kwargs={"slug":self.slug})
@@ -89,6 +94,7 @@ class Product(models.Model): #product_category
     def __str__(self):
         return self.title
 
+#COMUNICAÇÂO COM O BANCO
 class ProductQuerySet(models.query.QuerySet):
     def active(self):
         return self.filter(active=True)
