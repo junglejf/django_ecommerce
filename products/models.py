@@ -81,8 +81,8 @@ class Product(models.Model): #product_category
     featured    = models.BooleanField(default = False)
     active      = models.BooleanField(default = True)
     slug        = models.SlugField(blank = True, unique = True)
-    category   = models.ForeignKey(Category, related_name = 'products',on_delete=models.DO_NOTHING)
-    reg_date = models.DateField(null=True)
+    category    = models.ForeignKey(Category, related_name = 'products',on_delete=models.DO_NOTHING)
+    reg_date    = models.DateField(null=True)
 
     objects = ProductManager() 
 

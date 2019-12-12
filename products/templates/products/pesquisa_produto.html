@@ -1,0 +1,111 @@
+{% extends "base2.html" %}
+
+{% load static %}
+{% load filtros %}
+{% block titulo %}
+    Pesquisa de Produto
+{% endblock %}
+
+{% block conteudo %}
+    <div style="margin-bottom: 15px;">
+        <h4 style="margin-bottom: 10px;">Pesquisa de Produtos</h4>
+        <hr style="margin-bottom: 0px;">
+    </div>
+
+    <form class="mb-4" action ="{% url 'products:exibe_produtos' %}" method ="GET" novalidate>
+        <div class="form-group row" style="margin-bottom: 10px;">
+            <label for="id_buscaPor"
+                   class="col-lg-2 col-form-label font-weight-bold">Nome</label>
+            <div class="col-lg-10">
+                {{ form.buscaPor }}
+            </div>
+        </div>
+
+        {#  <input type="text"                               #}
+        {#     name="buscaPor"                                #}
+        {#     id="id_buscaPor"                               #}
+        {#     class="form-control form-control-sm"          #}
+        {#     maxlength="50"                                #}
+        {#     required>                                     #}
+
+        <div class="row">
+            <div class="col-lg-10 offset-lg-2">
+                <button type="submit" class="btn btn-primary">
+                    <img src="{% static 'images/skin/database_table.png' %}"/>
+                    Pesquisar
+                </button>
+            </div>
+        </div>
+    </form>
+
+    {% if products %}
+        <h5>Lista de Produtos</h5>
+        <div class="table-responsive mb-4">
+            <table style="width:100%"
+                   class="table table-striped table-sm table-bordered mb-0">
+                <thead>
+                   <tr>
+                      <th class="texto text-center">Categoria</th>
+                      <th class="texto text-center">Nome</th>
+                      <th class="texto text-center">Preço</th>
+                      <th class="texto text-center">Data de Cadastro</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   {% for produto in products %}
+                      <tr>
+                         <td width="20%" class="text-left">
+                             <span class="texto">{{ produto.category.name }}</span>
+                         </td>
+                         <td width="40%" class="text-left">
+                             <span class="texto">
+                                <a href="{% url 'products:exibe_produto' products_product.id %}">
+                                    {{ produto.title }}
+                                </a>
+                             </span>
+                         </td>
+                         <td width="20%" class="text-right">
+                             <span class="texto mr-3">{{ produto.price | separador_de_milhar}}</span>
+                         </td>
+                         <td width="20%" class="text-center">
+                             <span class="texto">{{ produto.reg_date | date:'d/m/Y' }}</span>
+                         </td>
+                      </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row" style="font-size: 14px;">
+            <div class="col-12">
+                {% if products.has_other_pages %}
+                    <ul class="pagination">
+                        {% if products.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?pagina={{ products.previous_page_number }}&buscaPor={{ buscaPor }}">Anterior</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>
+                        {% endif %}
+                        {% for i in products.paginator.page_range %}
+                            {% if products.number == i %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ i }} </a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?pagina={{ i }}&buscaPor={{ buscaPor }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if produtos.has_next %}
+                            <li class="page-item"><a class="page-link" href="?pagina={{ products.next_page_number }}&buscaPor={{ buscaPor }}">Próxima</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Próxima</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block domready %}
+
+{% endblock %}

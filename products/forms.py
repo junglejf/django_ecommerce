@@ -58,3 +58,20 @@ class ProductForm(forms.ModelForm):
         price = Decimal(price.replace(',', '.'))
 
         return price
+
+class RemoveProdutoForm(forms.Form):
+    class Meta:
+        fields = ('products_product_id')
+
+    products_product_id = forms.CharField(widget=forms.HiddenInput(), required=True)
+
+    # <input type="hidden" name="produto_id" id="id_produto_id" value="xxx">
+
+
+class PesquisaProdutoForm(forms.Form):
+    class Meta:
+        fields = ('buscaPor')
+
+    buscaPor = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control form-control-sm', 'maxlength': '120'}),
+        required=False)

@@ -1,21 +1,53 @@
+
+
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Base Template</title>
         {% include 'base/css.html'%} <!--informa o caminho do css -->
         {% block base_head %} 
         {% endblock base_head %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
     </head>
     <body>
                         
         {% include 'base/navbar.html' with nome_da_marca='Loja virtual' %} <!-- não pode ter espaço no nome do atributo  antes do igual nome_da_marca = .... -->
         {% block content %} 
+
         {% endblock %}
-        {% include 'base/js.html'%} <!--informa o caminho do javascript-->
         
+    
+    <br>
+    <div class="container">
+        {% block conteudo %}
+
+        {% endblock %}
+    </div>
+  
+    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mask.js' %}"></script>
+
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+            {% block domready %}
+
+            {% endblock %}
+        });
+    </script>
     </body>
+
+
 </html>
