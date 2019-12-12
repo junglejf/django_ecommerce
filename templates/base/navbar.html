@@ -27,7 +27,7 @@
         <a class="nav-link" href="{{ logout_url }}">Logout</a> 
       </li>
           {% if request.user.is_staff %}
-            <li class="nav-item {% if request.path == codprod_url %} active {% endif %}"> 
+            <li class="nav-item {% if request.path == cadprod_url %} active {% endif %}"> 
               <a class="nav-link" href="{{ cadprod_url }}"> Cadastrar-Produtos </a> 
             </li>
           {% endif %}

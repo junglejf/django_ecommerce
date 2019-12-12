@@ -23,7 +23,7 @@ class ProductForm(forms.ModelForm):
     description = forms.CharField(
         error_messages={'required': 'Campo obrigatório.',
                         'unique': 'Produto duplicado.'},
-        widget=forms.TextInput(attrs={'class': 'form-control form-control-sm', 'maxlength': '480'}),
+        widget=forms.Textarea(attrs={'class': 'form-control form-control-sm'}),
         required=True)
 
     price = forms.CharField(
@@ -48,3 +48,13 @@ class ProductForm(forms.ModelForm):
         required=True)
     
     #print("produto_form l20.",products_product_id,title) 
+
+    def clean_price(self):
+        price = self.cleaned_data.get('price')
+        
+        if not price:
+            return price
+        
+        price = Decimal(price.replace(',', '.'))
+
+        return price

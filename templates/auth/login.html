@@ -1,5 +1,18 @@
-<form method='POST'> 
-    {% csrf_token %}
-    {{ form }}
-    <button type='submit' class='btn btn-default'>Enviar</button>
-</form>
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 mb-2 mt-3 bg-danger" >
+            <hr class="mt-2 bg-dark">
+            <h4 class="mb-2 "> Já é cadastrado? Entre com o usuário</h4>
+            <hr class="mb-2 bg-dark">
+        </div>
+    </div>
+    <form method='POST'> 
+        {% csrf_token %}
+        {{ form }}
+        <button type='submit' class='btn btn-default btn-dark'>Enviar</button>
+    </form>
+
+{% endblock content %}

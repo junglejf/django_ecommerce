@@ -1,6 +1,17 @@
+{% extends "base.html" %}
 
+{% block content %}
+    <div class="row">
+        <div class="col-12 mb-2 mt-3 bg-danger" >
+            <hr class="mt-2 bg-dark">
+            <h4 class="mb-2 "> Você foi sorteado! Registre-se agora e receba um cupom de 10% desconto na primeira compra !!!!</h4>
+            <hr class="mb-2 bg-dark">
+        </div>
+    </div>
 <form method='POST'> 
     {% csrf_token %}
     {{ form }}
     <button type='submit' class='btn btn-default'>Enviar</button>
 </form>
+{% endblock content%}
+

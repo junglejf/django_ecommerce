@@ -1,8 +1,14 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect ,get_object_or_404
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from .forms import ContactForm, LoginForm, RegisterForm
 from products.forms import ProductForm
+from django.views.decorators.http import require_POST
+from products.models import Product
+from django.core.paginator import Paginator
+from django.contrib import messages
+
+
 
 def home_page(request):
     context = {
@@ -126,7 +132,7 @@ def cadastra_produto(request):
             messages.add_message(request, messages.ERROR, 'Corrija o(s) erro(s) abaixo.')
     else:
         produto_form = ProductForm()
-
+    print("produto form = "+str(produto_form))
     return render(request, 'cadprod/cadprod.html', {'form': produto_form })
 
 def edita_produto(request, id):
