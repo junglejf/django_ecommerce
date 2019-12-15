@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% load filtros %}
+
+{% load static %}
+
+{% block titulo %}
+    Venda de Produtos
+{% endblock %}
+
+{% block estilo %}
+
+{% endblock %}
+
+{% block conteudo %}
+    <br>
+    <div id="produtos">
+
+    </div>
+    <br>
+    <div id="carrinho">
+
+    </div>
+    <br/>
+    <br/>
+    <br/>
+{% endblock %}
+
+
+{% block domready %}
+
+    let ids_dos_produtos = []
+    let ids_dos_produtos_no_carrinho = []
+
+    $.get('{% url 'carrinho:exibe_produtos' %}', function(resposta) {
+        $("#produtos").html(resposta)
+    })
+    .done(function() {
+        let ids = $("#tbody1 td.id")
+        $(ids).each(function() {
+           var id = parseInt($(this).text());
+           // console.log("venda - id = " + id)
+           ids_dos_produtos.push(id)
+        })
+        // console.log(">>>> " + ids_dos_produtos)
+    })
+
+    $.get('{% url 'carrinho:exibe_carrinho' %}', function(resposta) {
+        $("#carrinho").html(resposta)
+    })
+    .done(function() {
+        let ids = $("#tbody2 td.id")
+        $.each( ids, function( i, val ) {
+           var id = parseInt($(val).text());
+           // console.log("carrinho - id = " + id)
+           ids_dos_produtos_no_carrinho.push(id)
+        })
+        // console.log(">>>>>>> " + ids_dos_produtos_no_carrinho)
+    })
+
+    $("#produtos").on("click", "button.adicionar", function () {
+        let form = $(this).parent().prev().children('form')
+        let input = $(form).children('input.quantidade')
+        if (input.val() <= 0) {
+           $(input).focus()
+           return
+        }
+        let tr = $(form).parent().parent()
+        let ind = $(tr).index()
+        let valor_id = ids_dos_produtos[ind]
+        $(form).append("<input type='hidden' name='produto_id' value='" + valor_id + "'>")
+        let url = $(form).attr('action')
+        let formData = $(form).serializeArray()
+        $.post(url, formData, function (resposta) {
+           // console.log(resposta)
+           $("#carrinho").html(resposta)
+           ids_dos_produtos_no_carrinho = recuperaIds(resposta)
+           // console.log(ids_dos_produtos_no_carrinho)
+        })
+    })
+
+    $("#carrinho").on("click", "button.btn-remove", function() {
+        let form = $(this).parent();
+        let tr = $(form).parent().parent();
+        let ind = $(tr).index();
+        let valor_id = ids_dos_produtos_no_carrinho[ind];
+        let input = "<input type='hidden' name='produto_id' value='" + valor_id + "'>";
+        $(form).append(input);
+        let url = $(form).attr('action')
+        let formData = $(form).serializeArray()
+        $.post(url, formData, function(resposta) {
+           $("#carrinho").html(resposta)
+           ids_dos_produtos_no_carrinho = recuperaIds(resposta)
+           // console.log(ids_dos_produtos_no_carrinho)
+        })
+    })
+
+    $("#carrinho").on("blur", "input.quantidade", function() {
+        let valor = $(this).val()
+        if (valor < 1 || valor > 1000) {
+           $(this).focus()
+           return
+        }
+        let form = $(this).parent()
+        let tr = $(form).parent().parent();
+        let ind = $(tr).index();
+        let valor_id = ids_dos_produtos_no_carrinho[ind];
+        $(form).append("<input type='hidden' name='produto_id' value='" + valor_id + "'>")
+        let url = $(form).attr('action')
+        let formData = $(form).serializeArray()
+        $.post(url, formData, function(resposta) {
+           $("#carrinho").html(resposta)
+           ids_dos_produtos_no_carrinho = recuperaIds(resposta)
+           console.log(ids_dos_produtos_no_carrinho)
+        })
+    })
+
+    function recuperaIds(resposta) {
+        var ids = $(resposta).find("td.id")
+        var ids_dos_produtos_no_carrinho = []
+        $(ids).each(function() {
+           let id = parseInt($(this).text());
+           ids_dos_produtos_no_carrinho.push(id)
+        })
+        return ids_dos_produtos_no_carrinho
+    }
+
+{% endblock %}

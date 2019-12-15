@@ -11,9 +11,9 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('products_product_id', 'title', 'description', 'price','category','reg_date')
+        fields = ('produto_id', 'title', 'description', 'price','category','reg_date','quantidade')
 
-    products_product_id = forms.CharField(widget=forms.HiddenInput(), required=False)
+    produto_id = forms.CharField(widget=forms.HiddenInput(), required=False)
     title = forms.CharField(
         error_messages={'required': 'Campo obrigatório.',
                         'unique': 'Produto duplicado.'},
@@ -47,6 +47,12 @@ class ProductForm(forms.ModelForm):
         widget=forms.DateInput(attrs={'class': 'form-control form-control-sm'}),
         required=True)
     
+    quantidade = forms.CharField(
+        localize=True,
+        error_messages={'required': 'Campo obrigatório.', },
+        widget=forms.TextInput(attrs={'class': 'form-control form-control-sm',
+                                      'maxlength': '10'}),
+        required=True)  
     #print("produto_form l20.",products_product_id,title) 
 
     def clean_price(self):
@@ -61,9 +67,9 @@ class ProductForm(forms.ModelForm):
 
 class RemoveProdutoForm(forms.Form):
     class Meta:
-        fields = ('products_product_id')
+        fields = ('produto_id')
 
-    products_product_id = forms.CharField(widget=forms.HiddenInput(), required=True)
+    produto_id = forms.CharField(widget=forms.HiddenInput(), required=True)
 
     # <input type="hidden" name="produto_id" id="id_produto_id" value="xxx">
 

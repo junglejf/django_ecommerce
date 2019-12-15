@@ -1,5 +1,5 @@
 {% load static %}
-
+{% url 'home' as home_url %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +37,7 @@
                    </a>
                    <div class="dropdown-menu">
                       <a class="dropdown-item" href="#">Categoria</a>
-                      <a class="dropdown-item" href="{% url 'products:cadprod' %}">Produto</a>
+                      <a class="dropdown-item" href="{% url 'products:cadastra_produto' %}">Produto</a>
                    </div>
                 </div>
                 <div class="dropdown">
@@ -49,6 +49,11 @@
                       <a class="dropdown-item" href="{% url 'products:pesquisa_produto' %}">Produtos</a>
                    </div>
                 </div>
+                
+                  <a class="nav-item nav-link " href="{{ home_url }}"">
+                      <img src="{% static '/images/skin/database_table.png' %}"> GoToSite
+                   </a>
+                 
              </div>
           </div>
        </div>

@@ -31,7 +31,7 @@
     {% endif %}
 
 
-<form id="form"  method ="POST" novalidate>
+<form id="form"  action ="{% url 'products:cadastra_produto' %}" method ="POST" novalidate>
 
         <div class="form-group row" style="margin-bottom: 10px;">
             <label for="id_category" class="col-lg-2 col-form-label font-weight-bold">Categoria</label>
@@ -125,6 +125,21 @@
             <div class="col-lg-7"></div>
         </div>
 
+        <div class="form-group row" style="margin-bottom: 20px;">
+            <label for="id_reg_date" class="col-lg-2 col-form-label font-weight-bold">Quantidade</label>
+            <div class="col-lg-3">
+                {{ form.quantidade }}
+                {% if form.quantidade.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.quantidade.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+
         {# <input type="text"                                          #}
         {#        name="data_cadastro"                                       #}
         {#        class="form-control form-control-sm hasDatepicker"   #}
@@ -136,7 +151,7 @@
             <div class="col-lg-10 offset-lg-2">
                 {% csrf_token %}
                 <button id="botao" type="button" class="btn btn-primary">
-                    {% if form.products_product_id.value %}
+                    {% if form.produto_id.value %}
                        Alterar
                     {% else %}
                        Cadastrar 
@@ -160,6 +175,10 @@
 {% endblock %}
 
 {% block domready %}
+    $("#botao").click(function() {
+        $("#form").append('{{ form.produto_id }}')
+        $("#form").submit()
+    })
 
     $("#id_reg_date").datepicker({
     {#    minDate: new Date(1950, 0, 1),#}
@@ -177,10 +196,7 @@
 
     $("#id_reg_date").mask("00/00/0000");
 
-    $("#botao").click(function() {
-        $("#form").append('{{ form.products_product_id }}')
-        $("#form").submit()
-    })
+
 
     $('#year').text(new Date().getFullYear());
 {% endblock %}

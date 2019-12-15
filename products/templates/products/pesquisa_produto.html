@@ -37,8 +37,7 @@
             </div>
         </div>
     </form>
-
-    {% if products %}
+    {% if produtos %}
         <h5>Lista de Produtos</h5>
         <div class="table-responsive mb-4">
             <table style="width:100%"
@@ -52,14 +51,14 @@
                    </tr>
                 </thead>
                 <tbody>
-                   {% for produto in products %}
+                   {% for produto in produtos %}
                       <tr>
                          <td width="20%" class="text-left">
                              <span class="texto">{{ produto.category.name }}</span>
                          </td>
                          <td width="40%" class="text-left">
                              <span class="texto">
-                                <a href="{% url 'products:exibe_produto' products_product.id %}">
+                                <a href="{% url 'products:exibe_produto' produto.id %}">
                                     {{ produto.title }}
                                 </a>
                              </span>
@@ -78,22 +77,22 @@
 
         <div class="row" style="font-size: 14px;">
             <div class="col-12">
-                {% if products.has_other_pages %}
+                {% if produtos.has_other_pages %}
                     <ul class="pagination">
-                        {% if products.has_previous %}
-                            <li class="page-item"><a class="page-link" href="?pagina={{ products.previous_page_number }}&buscaPor={{ buscaPor }}">Anterior</a></li>
+                        {% if produtos.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?pagina={{ produtos.previous_page_number }}&buscaPor={{ buscaPor }}">Anterior</a></li>
                         {% else %}
                             <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>
                         {% endif %}
-                        {% for i in products.paginator.page_range %}
-                            {% if products.number == i %}
+                        {% for i in produtos.paginator.page_range %}
+                            {% if produtos.number == i %}
                                 <li class="page-item active"><a class="page-link" href="#">{{ i }} </a></li>
                             {% else %}
                                 <li class="page-item"><a class="page-link" href="?pagina={{ i }}&buscaPor={{ buscaPor }}">{{ i }}</a></li>
                             {% endif %}
                         {% endfor %}
                         {% if produtos.has_next %}
-                            <li class="page-item"><a class="page-link" href="?pagina={{ products.next_page_number }}&buscaPor={{ buscaPor }}">Próxima</a></li>
+                            <li class="page-item"><a class="page-link" href="?pagina={{ produtos.next_page_number }}&buscaPor={{ buscaPor }}">Próxima</a></li>
                         {% else %}
                             <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Próxima</a></li>
                         {% endif %}

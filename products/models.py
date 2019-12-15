@@ -60,11 +60,11 @@ class ProductManager(models.Manager):
         return ProductQuerySet(self.model, using=self._db)
 
     def all(self):
-        return self.get_queryset().active()
+        return self.get_queryset().active().order_by('title')
 
     def featured(self):
         #return self.get_queryset().filter(featured = True)
-        return self.get_queryset().featured()
+        return self.get_queryset().featured().order_by('title')
 
     def get_by_id(self,id):
         qs = self.get_queryse().filter(id = id)
@@ -83,6 +83,9 @@ class Product(models.Model): #product_category
     slug        = models.SlugField(blank = True, unique = True)
     category    = models.ForeignKey(Category, related_name = 'products',on_delete=models.DO_NOTHING)
     reg_date    = models.DateField(null=True)
+    quantidade = models.IntegerField(default=0)
+
+    
 
     objects = ProductManager() 
 
@@ -96,11 +99,12 @@ class Product(models.Model): #product_category
 
 #COMUNICAÇÂO COM O BANCO
 class ProductQuerySet(models.query.QuerySet):
+
     def active(self):
-        return self.filter(active=True)
+        return self.filter(active=True).order_by('title')
 
     def featured(self):
-        return self.filter(featured=True, active=True)
+        return self.filter(featured=True, active=True).order_by('title')
 
 def product_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:

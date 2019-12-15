@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% load filtros %}
+
 
 {% block titulo %}
     Cadastro de Produtos
@@ -35,28 +35,35 @@
             <span class="texto"><b>Categoria: </b></span>
         </div>
         <div class="col-lg-10">
-            <span class="texto">{{ products.category.name }}</span>
+            
+            <span class="texto">{{ produto.category.name }}</span>
         </div>
 
         <div class="col-lg-2">
             <span class="texto"><b>Nome: </b></span>
         </div>
         <div class="col-lg-10">
-            <span class="texto">{{ products.title }}</span>
+            <span class="texto">{{ produto.title }}</span>
         </div>
 
         <div class="col-lg-2">
             <span class="texto"><b>Preço: </b></span>
         </div>
         <div class="col-lg-10">
-            <span class="texto">{{ products.price | separador_de_milhar }}</span>
+            <span class="texto">{{ produto.price  }}</span>
         </div>
 
         <div class="col-lg-2">
             <span class="texto"><b>Data de cadastro: </b></span>
         </div>
         <div class="col-lg-10">
-            <span class="texto">{{ products.reg_date | date:'d/m/Y' }}</span>
+            <span class="texto">{{ produto.reg_date | date:'d/m/Y' }}</span>
+        </div>
+                <div class="col-lg-2">
+            <span class="texto"><b>Quantidade: </b></span>
+        </div>
+                <div class="col-lg-10">
+            <span class="texto">{{ produto.quantidade }}</span>
         </div>
     </div>
 
@@ -64,7 +71,7 @@
         <div class="form-group row" style="margin-bottom: 0px;">
             <div class="col-12">
                 <div class="form-inline">
-                    <a id="botao_editar" href="{% url 'products:edita_produto' products_product.id %}"
+                    <a id="botao_editar" href="{% url 'products:edita_produto' produto.id %}"
                        class="btn btn-primary mr-3">
                         <img src="{% static 'products/images/skin/database_edit.png' %}"/>
                         Editar
@@ -87,7 +94,7 @@
 
 {% block domready %}
     $("#botao_remover").click(function() {
-        $("#form_remove_produto").append('{{ form_remove_produto.products_product_id }}')
+        $("#form_remove_produto").append('{{ form_remove_produto.produto_id }}')
         $("#form_remove_produto").submit()
     })
 {% endblock %}
