@@ -5,6 +5,9 @@
 {% url 'register' as register_url %} <!--#variáveis das páginas-->
 {% url 'logout' as logout_url %}
 {% url 'index' as index_url %}
+{% url 'carrinho:cart_home' as carrinho_url %}
+
+{% load static %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{{ home_url }}">{% if nome_da_marca %} {{ nome_da_marca }} {% else %} Codigo Fluente eCommerce {% endif %}</a>
@@ -40,7 +43,14 @@
       <li class="nav-item {% if request.path == register %} active {% endif %}"> 
         <a class="nav-link" href="{{ register_url }}">Registrar-se</a> 
       </li>
+
     {% endif %}
+      <li class="nav-item {% if request.path == carrinho %} active {% endif %}"> 
+        <a class="nav-link" href="{{ carrinho_url }}">Carrinho
+        <img src="{% static 'images/icons8-shopping-cart-100.png' %}" width="{{ 30 }}" height="{{ 30 }}"> </a> 
+
+      </li>
+
 
     </ul>
     <form class="form-inline my-2 my-lg-0">

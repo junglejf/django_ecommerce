@@ -3,4 +3,38 @@
 {% block content %}
 
 <h3> CART HOME </h3>
+{% if cart.products.exists %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Product Name</th>
+      <th>Product Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in cart.products.all %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href='{{ produc.get_absolute_url}}'>{{product.name}}</a> <a href='#'>Remove?</a></td>
+      <td>{{ product.price }}</td>
+ 
+    </tr>
+    {% endfor %}
+    <tr>
+      <th colspan="2"></th>
+      <td><b>Subotal = </b>  {{cart.subtotal}}</td>
+    </tr>
+    <tr>
+      <th colspan="2"></th>
+      <td><b>Total = </b>  {{cart.total}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+{% else %}
+     <p class='lead'> CART IS EMPTY</p>
+{% endif %}
+
 {% endblock content %}

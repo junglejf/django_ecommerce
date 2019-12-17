@@ -21,7 +21,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from .views import index,home_page, about_page, contact_page, blog_page, courses_page, login_page, register_page, logout_page
-from carrinho import urls
+#from carrinho import urls
 
 urlpatterns = [
     path('', home_page,name='home'),
@@ -36,7 +36,7 @@ urlpatterns = [
     path('logout/', logout_page, name='logout'),  
     path('register/', register_page, name='register'),
     path('products/', include("products.urls")),
-    path('carrinho/', include('carrinho.urls')),
+    path('carrinho/', include("carrinho.urls"), name='carrinho'),
     
 
 ]

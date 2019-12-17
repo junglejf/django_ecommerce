@@ -8,7 +8,7 @@ from e_commerce.views import home_page
 from .views import (
                         #ProductListView, 
                         #ProductDetailSlugView, 
-                        cadastra_produto, exibe_produto, edita_produto, remove_produto, pesquisa_produto, exibe_produtos,product_detail_view,product_list_view
+                        cadastra_produto, exibe_produto, edita_produto, remove_produto, pesquisa_produto, exibe_produtos,product_detail_view,product_list_view,product_featured_list_view,product_featured_detail_view
                     )
 
 urlpatterns = [

@@ -6,7 +6,7 @@ from django.contrib import messages
 
 from .models import Product
 #from .forms import ProductForm
-
+from carrinho.models import Cart
 #from django.contrib import messages
 #from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST
@@ -77,6 +77,16 @@ def product_list_view(request):
     }
     print("context from list_view = = ="+str(context))
     return render(request, "products/list.html", context)
+
+def product_featured_list_view(request):
+
+    #return "aqui"
+    queryset = Product.objects.featured()
+    context = {
+        'object_list': queryset
+    }
+    print("context from list_view = = ="+str(context))
+    return render(request, "products/list.html", context)
     
 def product_detail_view(request, pk=None, *args, **kwargs):
     print("args:"+str(args))
@@ -88,15 +98,34 @@ def product_detail_view(request, pk=None, *args, **kwargs):
     #instance = Product.objects.get(pk = pk) #get the object id
     #instance = get_object_or_404(Product, pk = pk)
     instance = get_object_or_404(Product, slug = slug, active = True)
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
+    print("pk-instance:"+str(pk))
+    context = {
+        'object': instance,
+        'cart' : cart_obj
+    }
+    print("context ===> "+str(context))
+
+    return render(request, "products/detail.html", context)
+ 
+def product_featured_detail_view(request, pk=None, *args, **kwargs):
+    print("args:"+str(args))
+    print("kwargs:"+str(kwargs))
+    print("request:"+str(request))
+    print("pk:"+str(pk))
+    slug = kwargs.get('slug')
+    print("slug = "+slug)
+    #instance = Product.objects.get(pk = pk) #get the object id
+    #instance = get_object_or_404(Product, pk = pk)
+    instance = get_object_or_404(Product, slug = slug, active = True, featured = True)
     print("pk-instance:"+str(pk))
     context = {
         'object': instance
     }
     print("context ===> "+str(context))
 
-    return render(request, "products/detail.html", context)
+    return render(request, "products/featured-detail.html", context)
  
-
 
 
 

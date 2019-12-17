@@ -67,7 +67,7 @@ class ProductManager(models.Manager):
         return self.get_queryset().featured().order_by('title')
 
     def get_by_id(self,id):
-        qs = self.get_queryse().filter(id = id)
+        qs = self.get_queryset().filter(id=id)
         if qs.count()==1:
             return qs.first()
         return None
@@ -96,6 +96,14 @@ class Product(models.Model): #product_category
     #exibir o nome do produto
     def __str__(self):
         return self.title
+
+    def __unicode__(self):
+        return self.title
+
+    @property
+    def name(self):
+        return self.title
+    
 
 #COMUNICAÇÂO COM O BANCO
 class ProductQuerySet(models.query.QuerySet):
