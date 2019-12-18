@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect ,get_object_or_404
 
 from carrinho.carrinho import Carrinho
@@ -14,8 +14,9 @@ def cart_home(request):
     return render(request,'carrinho/cart_home.html',{"cart":cart_obj})
 
 def cart_update(request):
-    print(request.POST)
+    
     product_id = request.POST.get('product_id')
+
     if product_id is not None:
         try:
             product_obj = Product.objects.get(id=product_id)
@@ -28,6 +29,14 @@ def cart_update(request):
             cart_obj.products.remove(product_obj)
         else:
             cart_obj.products.add(product_obj) 
+        
+        if request.is_ajax():
+            print("request AJAX")
+            json_data = {
+                "added": added,
+                "removed": not added,
+            }
+            return JsonResponse(json_data)
     #cart_obj.products.add(product_id)
     #cart_obj.products.remove(obj)
     return redirect("carrinho:cart_home")
