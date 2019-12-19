@@ -20,10 +20,7 @@ def cart_detail_api_view(request):
      #   for x in cart_obj.products.all()]
     products= []
     for x in cart_obj.products.all():
-        if 'selected' not in dir(x):
-            products.append({"id": x.id,"url":x.get_absolute_url(),"name": x.name,"price":x.price,"quantidade":x.quantidade,"selected":1 } )
-        else:
-            products.append({"id": x.id,"url":x.get_absolute_url(),"name": x.name,"price":x.price,"quantidade":x.quantidade,"selected":x.selected } )
+            products.append({"id": x.id,"url":x.get_absolute_url(),"name": x.name,"price":x.price,"selected":x.selected, "quantidade":x.price * x.selected } )
 
     cart_data = {"products":products, "subtotal":cart_obj.subtotal, "total":cart_obj.total}
     return JsonResponse (cart_data)
@@ -31,23 +28,26 @@ def cart_detail_api_view(request):
 def cart_home(request):
     cart_obj, new_obj= Cart.objects.new_or_get(request)
     for x in cart_obj.products.all():
-         if 'selected' not in dir(x):
-            x.selected = 1
-
+        x.quantidade = x.price * x.selected
+    
     return render(request,'carrinho/cart_home.html',{"cart":cart_obj})
 
 def cart_update(request):
     
     product_id = request.POST.get('product_id')
+    #print("linha 42")
+    #print(dir(product_id))
     if product_id is not None:
         try:
             product_obj = Product.objects.get(id=product_id)
-            if 'selected' not in dir(product_obj):
-                product_obj.selected = 1
+            #if 'selected' not in dir(product_obj):
+             #   product_obj.selected = 1
+              #  product_obj.save()
             #product_obj.selecionado = 0
-            print(product_obj)
-            print(product_obj.id)
-            print("produtos selecionads"+str(product_obj.selected))
+            
+     #       print(product_obj)
+      #      print(product_obj.id)
+       #     print("produtos selecionads"+str(product_obj.selected))
         except Product.DoesNotExist:
             print("Show message to user, product is gone?")
             return redirect("carrinho:home")
@@ -57,15 +57,16 @@ def cart_update(request):
             cart_obj.products.remove(product_obj)
             added = False
         else:
-            print(product_obj)
-            print(product_obj.id)
-            print("produtos selecionads XXX = "+str(product_obj.selected))
+        #    print(product_obj)
+         #   print(product_obj.id)
+          #  print("produtos selecionads XXX = "+str(product_obj.selected))
             cart_obj.products.add(product_obj) 
             added = True
         request.session['cart_items'] = cart_obj.products.count()
+        
  
         if request.is_ajax():
-            print("request AJAX")
+           # print("request AJAX")
             json_data = {
                 "added": added,
                 "removed": not added,
@@ -75,78 +76,3 @@ def cart_update(request):
     #cart_obj.products.add(product_id)
     #cart_obj.products.remove(obj)
     return redirect("carrinho:cart_home")
-
-def exibe_produtos_e_carrinho(request):
-    return render(request, 'carrinho/vendas.html')
-
-
-def exibe_produtos(request):
-    produtos = Product.objects.all()
-    lista_de_forms = []
-    for produto in produtos:
-        lista_de_forms.append(QuantidadeForm(initial={'quantidade': 0}))
-
-    return render(request, 'carrinho/produtos_a_venda.html',  {
-       'listas': zip(produtos, lista_de_forms)
-    })   
-
-
-def exibe_carrinho(request):
-    carrinho = Carrinho(request)
-
-    lista_de_produtos_no_carrinho = carrinho.get_produtos()
-
-    produtos_no_carrinho = []
-    lista_de_forms = []
-    valor_do_carrinho = 0
-    for item in lista_de_produtos_no_carrinho:
-        produtos_no_carrinho.append(item['produto'])
-        lista_de_forms.append(QuantidadeForm(initial={'quantidade': item['quantidade']}))
-        valor_do_carrinho = valor_do_carrinho + int(item['quantidade']) * Decimal(item['preco'])
-    
-    return render(request, 'carrinho/produtos_no_carrinho.html',  {
-       'listas': zip(produtos_no_carrinho, lista_de_forms),
-       'valor_do_carrinho': valor_do_carrinho
-    })
-
-
-def adicionar_ao_carrinho(request):
-    form = QuantidadeForm(request.POST)
-    if form.is_valid():
-        quantidade = form.cleaned_data['quantidade']
-        produto_id = form.cleaned_data['produto_id']
-
-        carrinho = Carrinho(request)
-        carrinho.adicionar(produto_id, quantidade)
-
-        return exibe_carrinho(request)
-    else:
-        print(form.errors)
-        raise ValueError('Ocorreu um erro inesperado ao adicionar um produto ao carrinho.')
-
-
-def remove_produto_carrinho(request):
-    form = RemoveProdutoDoCarrinhoForm(request.POST)
-    if form.is_valid():
-        carrinho = Carrinho(request)
-        carrinho.remover(form.cleaned_data['produto_id'])
-
-        return exibe_carrinho(request)
-    else:
-        print(form.errors)
-        raise ValueError('Ocorreu um erro inesperado ao adicionar um produto ao carrinho.')
-
-
-def atualiza_qtd_carrinho(request):
-    form = QuantidadeForm(request.POST)
-    if form.is_valid():
-        produto_id = form.cleaned_data['produto_id']
-        quantidade =  form.cleaned_data['quantidade']
-
-        carrinho = Carrinho(request)
-        carrinho.alterar(produto_id, quantidade)
-
-        return exibe_carrinho(request)
-    else:
-        print(form.errors)
-        raise ValueError('Ocorreu um erro inesperado ao adicionar um produto ao carrinho.')

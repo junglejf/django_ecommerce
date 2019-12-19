@@ -24,7 +24,11 @@ class CartManager(models.Manager):
             else:
                   cart_obj = Cart.objects.new(user=request.user)
                   new_obj = True
+                  print("linha27")
+                  print(dir(request.session))
                   request.session['cart_id'] = cart_obj.id
+                  print("linha30")
+                  print(dir(request.session))
             return cart_obj, new_obj
 
       def new(self, user=None):
@@ -59,8 +63,10 @@ def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
             #print("procuts m2m = "+str(products))
             total = 0
             for x in products:
-                  total += x.price
-                  
+                  x.quantidade = x.price * x.selected
+                  total += x.price * x.selected
+                  x.save()
+                  """
                   if 'selected' in dir(x):
                         print("x.selected = "+str(x.selected))
                   else:
@@ -70,7 +76,7 @@ def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
                         x.save()
                   print("x = "+str(dir(x)))
             print("\nm2m_action =" +str(action))
-                 
+            """
             if instance.subtotal != total:
                   instance.subtotal = total
                   instance.save()

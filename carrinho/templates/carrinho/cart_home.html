@@ -10,21 +10,23 @@
       <th>#</th>
       <th>Product Name</th>
       <th>Product Price</th>
-      <th>Quantidade</th>
-      <th>Selected</th>
+       <th>Selected</th>
+      <th>SubTotal</th>
+     
     </tr>
   </thead>
   <tbody class='cart-body'>
     
 
       {% for product in cart.products.all %}
+     
       <tr class='cart-product'>
           <th scope="row">{{ forloop.counter }}</th>
           <td><a href='{{ product.get_absolute_url}}'>{{product.name}}</a>     
           {% include 'carrinho/snippets/remove-product.html' with product_id=product.id  %}</td>
           <td>{{ product.price }}</td>
-          <td>{{ product.quantidade }}</td>
-          <td>{{ product.selected.value }}</td>
+          <td>{{ product.selected }}</td>
+          <td>{{ product.quantidade}}</td>
     
         </tr>
         {% endfor %}
