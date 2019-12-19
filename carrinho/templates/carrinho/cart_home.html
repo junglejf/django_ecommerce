@@ -10,6 +10,8 @@
       <th>#</th>
       <th>Product Name</th>
       <th>Product Price</th>
+      <th>Quantidade</th>
+      <th>Selected</th>
     </tr>
   </thead>
   <tbody class='cart-body'>
@@ -19,18 +21,19 @@
       <tr class='cart-product'>
           <th scope="row">{{ forloop.counter }}</th>
           <td><a href='{{ product.get_absolute_url}}'>{{product.name}}</a>     
-          {% include 'carrinho/snippets/remove-product.html' with product_id=product.id  %}
-          </td>
+          {% include 'carrinho/snippets/remove-product.html' with product_id=product.id  %}</td>
           <td>{{ product.price }}</td>
+          <td>{{ product.quantidade }}</td>
+          <td>{{ product.selected.value }}</td>
     
         </tr>
         {% endfor %}
         <tr>
-          <th colspan="2"></th>
+          <th colspan="3"></th>
           <td><b>Subotal = </b>  R$<span class='cart-subtotal'>{{cart.subtotal}}</span></td>
         </tr>
         <tr>
-          <th colspan="2"></th>
+          <th colspan="3"></th>
           <td><b>Total = </b>  R$<span class='cart-total'>{{cart.total}}</span></td>
         </tr>
   </tbody>

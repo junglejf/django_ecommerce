@@ -44,6 +44,7 @@ class Cart(models.Model):
       subtotal = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
       updated = models.DateTimeField(auto_now=True)
       timestamp = models.DateTimeField(auto_now_add=True)
+      
 
       objects = CartManager()
 
@@ -53,10 +54,23 @@ class Cart(models.Model):
 def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
       
       if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
+            #print("INSTANCE = "+str(dir(instance.products)))
             products = instance.products.all()
+            #print("procuts m2m = "+str(products))
             total = 0
             for x in products:
                   total += x.price
+                  
+                  if 'selected' in dir(x):
+                        print("x.selected = "+str(x.selected))
+                  else:
+                        print("adicionando quantidade inicial selected =1")
+                        x.selected = 1
+                        print(x.selected)
+                        x.save()
+                  print("x = "+str(dir(x)))
+            print("\nm2m_action =" +str(action))
+                 
             if instance.subtotal != total:
                   instance.subtotal = total
                   instance.save()

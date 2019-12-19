@@ -109,7 +109,7 @@
                                 newCartItemRemove.css("display","block")
                                 //newCartItemRemove.removeClass("hidden-class")
                                 newCartItemRemove.find(".cart-item-product-id").val(value.id) // id setado na view cart_detail
-                                cartBody.prepend("<tr><th scope=\"row\">" + i + "</th><td><a href='" + value.url + "'>" + value.name  + "</a>"+ newCartItemRemove.html()+"</td><td>" + value.price +"</td></tr>")
+                                cartBody.prepend("<tr><th scope=\"row\">" + i + "</th><td><a href='" + value.url + "'>" + value.name  + "</a>"+ newCartItemRemove.html()+"</td><td>" + value.price +"</td><td>"+value.quantidade+"</td><td>"+value.selected+"</td></tr>")
                                 i --
                                 
                             })
