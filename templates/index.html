@@ -29,6 +29,7 @@
                     <p>{{ usuario }}
                     <p>{{ request.user.is_staff}}
                     <p>{{ request.user.last_login}}
+                    <p>{{ request.session.cart_items }}
                 </div>
             </div>
             {% endif %}

@@ -46,8 +46,8 @@
 
     {% endif %}
       <li class="nav-item {% if request.path == carrinho %} active {% endif %}"> 
-        <a class="nav-link" href="{{ carrinho_url }}">Carrinho
-        <img src="{% static 'images/icons8-shopping-cart-100.png' %}" width="{{ 30 }}" height="{{ 30 }}"> </a> 
+        <a class="nav-link" href="{{ carrinho_url }}">Carrinho <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class='navbar-cart-count'> ({{ request.session.cart_items }})</span>
+      </a> 
 
       </li>
 
