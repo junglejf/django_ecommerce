@@ -22,7 +22,7 @@
           <nav class="navbar bg-dark navbar-dark navbar-expand-md">
        <div class="container">
           <a href="#" alt="logo" class="navbar-brand">
-             <img class="rounded" src="{% static '/images/logo.jpg' %}" style="width: 65px;">
+             
           </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
@@ -33,25 +33,23 @@
              <div class="navbar-nav mr-auto">
                 <div class="dropdown">
                    <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                      <img src="{% static '/images/skin/database_add.png' %}"> Cadastrar
+                       Cadastrar
                    </a>
                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Categoria</a>
-                      <a class="dropdown-item" href="{% url 'products:cadastra_produto' %}">Produto</a>
+                      <a class="dropdown-item" href="{% url 'products:cadastra_produto' %}">Curso</a>
                    </div>
                 </div>
                 <div class="dropdown">
                    <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                      <img src="{% static '/images/skin/database_table.png' %}"> Buscar
+                       Buscar Curso
                    </a>
                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Categorias</a>
                       <a class="dropdown-item" href="{% url 'products:pesquisa_produto' %}">Produtos</a>
                    </div>
                 </div>
                 
                   <a class="nav-item nav-link " href="{{ home_url }}"">
-                      <img src="{% static '/images/skin/database_table.png' %}"> GoToSite
+                      <img src="{% static '/images/skin/logo.jpg' %}" width="5%"> GoToSite
                    </a>
                  
              </div>

@@ -24,11 +24,11 @@ class CartManager(models.Manager):
             else:
                   cart_obj = Cart.objects.new(user=request.user)
                   new_obj = True
-                  print("linha27")
-                  print(dir(request.session))
+                  #print("linha27")
+                  #print(dir(request.session))
                   request.session['cart_id'] = cart_obj.id
-                  print("linha30")
-                  print(dir(request.session))
+                  #print("linha30")
+                  #print(dir(request.session))
             return cart_obj, new_obj
 
       def new(self, user=None):

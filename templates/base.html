@@ -19,7 +19,7 @@
     </head>
     <body>
                         
-        {% include 'base/navbar.html' with nome_da_marca='Loja virtual' %} <!-- não pode ter espaço no nome do atributo  antes do igual nome_da_marca = .... -->
+        {% include 'base/navbar.html' with nome_da_marca='DOLYT MECH SCHOOL' %} <!-- não pode ter espaço no nome do atributo  antes do igual nome_da_marca = .... -->
         {% block content %} 
 
         {% endblock %}
@@ -40,12 +40,18 @@
     <script src="{% static 'js/popper.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/bootstrap-input-spinner.js' %}"></script>
+          <script>
+   
+</script>
     <script>
         $(document).ready(function(){
             {% block domready %}
 
             {% endblock %}
         });
+        var teste = $("#product_selected")
+        console.log(teste)
         $(document).ready(function(){
             var productForm = $(".form-product-ajax")
             productForm.submit(function(event){
@@ -91,6 +97,7 @@
                 var productsRows = cartBody.find(".cart-product")
                 var currentUrl = window.location.href
 
+
                 var refreshCartUrl = '/api/carrinho';
                 var refreshCartMethod = "GET";
                 var data = {};
@@ -99,6 +106,8 @@
                     method: refreshCartMethod,
                     data: data,
                     success: function(data){
+                        console.log("data--------------------------------------------------------")
+                        console.log(data)
                         var hiddenCartItemRemoveForm = $(".cart-item-remove-form")
                         if(data.products.length > 0){
                             productsRows.html(" ")
@@ -108,6 +117,7 @@
                                 var newCartItemRemove = hiddenCartItemRemoveForm.clone()
                                 newCartItemRemove.css("display","block")
                                 //newCartItemRemove.removeClass("hidden-class")
+                                
                                 newCartItemRemove.find(".cart-item-product-id").val(value.id) // id setado na view cart_detail
                                 cartBody.prepend("<tr><th scope=\"row\">" + i + "</th><td><a href='" + value.url + "'>" + value.name  + "</a>"+ newCartItemRemove.html()+"</td><td>" + value.price +"</td><td>"+value.selected+"</td><td>"+value.quantidade+"</td></tr>")
                                 i --
@@ -121,6 +131,7 @@
                             window.location.href = currentUrl
 
                         }
+                        
                     },
                     error: function(errorData){
                         console.log("error")
@@ -130,8 +141,36 @@
 
 
             }
+           
+            console.log("linha 138")
+            var $changedInput = $("#changedInput")
+            var $valueOnInput = $("#valueOnInput")
+            var $valueOnChange = $("#valueOnChange")
+            var quantity = $(".quantity")
+            console.log("changedInput" , $changedInput)
+            console.log(quantity)
+            $changedInput.on("input", function (event) {
+                $valueOnInput.html($changedInput.val())
+                console.log("SOPA")
+            })
+            $changedInput.on("change", function (event) {
+                $valueOnChange.html($changedInput.val())
+                console.log("aqui")
+            })
+            $(".quantity").click(function () { 
+                console.log("CLICOU")
+                console.log("in current cart")
+                
+             })
+            
+
         })
+        function checkTextbox(element){
+            var qtd = element.value;
+            console.log(qtd)
+        }
     </script>
+
     </body>
 
 

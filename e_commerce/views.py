@@ -64,6 +64,7 @@ def courses_page(request):
         "content":"Bem-vindo a página de courses"
     }
     return render(request, "cursos/cursos.html", context)
+    
 User = get_user_model()
 def login_page(request):
     form = LoginForm(request.POST or None)

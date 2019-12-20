@@ -23,7 +23,6 @@
             <div class="col-12">
                 {% for message in messages %}
                     <ul class="list-group rounded {{ message.tags }}">
-                        {# Supondo a utilização de apenas info e danger #}
                         <li style="padding-top: 7px; padding-bottom: 7px;"
                             class="list-group-item list-group-item-{% if message.tags == 'info' %}info{% else %}danger{% endif %}">
                             {{ message }}
@@ -51,12 +50,6 @@
             </div>
         </div>
 
-        {#  <select name="categoria" class="form-control form-control-sm" required id="id_categoria">   #}
-        {#     <option value="" selected>--- Selecione uma categoria ---</option>                     #}
-        {#     <option value="1">Eletrodoméstico</option>                                           #}
-        {#     <option value="2">Celular</option>                                                   #}
-        {#     <option value="3">Computador</option>                                                #}
-        {#  </select>                                                                               #}
 
         <div class="form-group row" style="margin-bottom: 10px;">
             <label for="id_title" class="col-lg-2 col-form-label font-weight-bold">Nome</label>
@@ -85,12 +78,6 @@
                 {% endif %}
             </div>
         </div>
-        {#  <input type="text"                               #}
-        {#     name="nome"                                  #}
-        {#     id="id_nome"                                 #}
-        {#     class="form-control form-control-sm"          #}
-        {#     maxlength="10"                                #}
-        {#     required>                                     #}
 
         <div class="form-group row" style="margin-bottom: 10px;">
             <label for="id_price" class="col-lg-2 col-form-label font-weight-bold">Preço</label>
@@ -106,12 +93,6 @@
             </div>
         </div>
 
-        {#  <input type="text"                               #}
-        {#     name="preco"                                #}
-        {#     id="id_preco"                               #}
-        {#     class="form-control form-control-sm"          #}
-        {#     maxlength="10"                                #}
-        {#     required>                                     #}
 
         <div class="form-group row" style="margin-bottom: 20px;">
             <label for="id_reg_date" class="col-lg-2 col-form-label font-weight-bold">Data de Cadastro</label>
@@ -127,13 +108,6 @@
             </div>
             <div class="col-lg-7"></div>
         </div>
-
-        {# <input type="text"                                          #}
-        {#        name="data_cadastro"                                       #}
-        {#        class="form-control form-control-sm hasDatepicker"   #}
-        {#        required=""                                          #}
-        {#        id="id_data_cadastro"                                      #}
-        {#        maxlength="10">                                      #}
 
         <div class="form-group row" style="margin-bottom: 220px;">
             <div class="col-lg-10 offset-lg-2">
@@ -202,35 +176,3 @@
     $('#showdate').show('#botao');
     $("#showdate").text($("#form").data("like"));
 {% endblock %}    
-<!--
-    <div class='container'>
-        <div class='row'>
-            <div class='col'>
-                <p>{{ content }}</p>
-                <div class='col-sm-6 col-12'>
-                <form method='POST'> {% csrf_token %}
-                   
-                   {{ form }}
-                   {{ form.title.name}}
-                   {{ form.title.id}}
-                   {{ form.description.name}}
-                    
-                </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group row" style="margin-top: 20px;">
-            <div class="col-lg-3 offset-lg-2">
-                {% csrf_token %}
-                <button id="botao1" type="button" class="btn btn-warning btn-lg btn-block">
-                    {% if form.produts_product_id.value %}
-                       Alterar
-                    {% else %}
-                       Cadastrar
-                    {% endif %}
-                </button>
-            </div>
-        </div>
--->

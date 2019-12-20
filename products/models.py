@@ -83,8 +83,8 @@ class Product(models.Model): #product_category
     slug        = models.SlugField(blank = True, unique = True)
     category    = models.ForeignKey(Category, related_name = 'products',on_delete=models.DO_NOTHING)
     reg_date    = models.DateField(null=True)
-    quantidade = models.DecimalField(decimal_places=2, max_digits=20, default=0)
-    selected = models.IntegerField(default=1)
+    quantidade  = models.DecimalField(decimal_places=2, max_digits=20, default=0)
+    selected    = models.IntegerField(default=1)
     
 
     objects = ProductManager() 

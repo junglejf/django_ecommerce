@@ -2,35 +2,29 @@ from decimal import Decimal
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect ,get_object_or_404
-
-from carrinho.carrinho import Carrinho
-from carrinho.forms import QuantidadeForm, RemoveProdutoDoCarrinhoForm
+from carrinho.forms import QuantidadeForm, RemoveProdutoDoCarrinhoForm, CartAddProductForm
 from products.models import Product
 from .models import Cart
 
+
 def cart_detail_api_view(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
-    #products = [{
-        #"id": x.id,
-        #"url":x.get_absolute_url(),
-        #"name": x.name,
-        #"price":x.price,
-        # "selected":x.selected
-      #  } 
-     #   for x in cart_obj.products.all()]
-    products= []
+    products = []
     for x in cart_obj.products.all():
-            products.append({"id": x.id,"url":x.get_absolute_url(),"name": x.name,"price":x.price,"selected":x.selected, "quantidade":x.price * x.selected } )
+        products.append({"id": x.id,"url":x.get_absolute_url(),"name": x.name,"price":x.price,"selected":x.selected, "quantidade":x.price * x.selected } )
 
-    cart_data = {"products":products, "subtotal":cart_obj.subtotal, "total":cart_obj.total}
+    cart_data = {"products":products, "subtotal":cart_obj.subtotal, "total":cart_obj.total }
     return JsonResponse (cart_data)
 
 def cart_home(request):
     cart_obj, new_obj= Cart.objects.new_or_get(request)
+    lista_de_forms = []
+    valor_do_carrinho = 0
     for x in cart_obj.products.all():
-        x.quantidade = x.price * x.selected
+        lista_de_forms.append(QuantidadeForm(initial={'quantidade': x.quantidade}))
+        valor_do_carrinho = valor_do_carrinho + int(x.quantidade) * Decimal(x.price)
     
-    return render(request,'carrinho/cart_home.html',{"cart":cart_obj})
+    return render(request,'carrinho/cart_home.html',{"cart":cart_obj, "listas":lista_de_forms})
 
 def cart_update(request):
     
@@ -49,7 +43,7 @@ def cart_update(request):
       #      print(product_obj.id)
        #     print("produtos selecionads"+str(product_obj.selected))
         except Product.DoesNotExist:
-            print("Show message to user, product is gone?")
+            print("Product not found")
             return redirect("carrinho:home")
         cart_obj, new_obj = Cart.objects.new_or_get(request)
 
@@ -76,3 +70,23 @@ def cart_update(request):
     #cart_obj.products.add(product_id)
     #cart_obj.products.remove(obj)
     return redirect("carrinho:cart_home")
+
+def atualiza_qtd_carrinho(request):
+    form = QuantidadeForm(request.POST)
+    if form.is_valid():
+        produto_id = form.cleaned_data['produto_id']
+        quantidade =  form.cleaned_data['quantidade']
+
+        carrinho = Cart(request)
+        carrinho.alterar(produto_id, quantidade)
+
+        return cart_update(request)
+    else:
+        print(form.errors)
+        raise ValueError('Ocorreu um erro inesperado ao adicionar um produto ao carrinho.')
+
+def cart_detail(request):
+    cart = Cart(request)
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+    return render(request, 'carrinho/cart_home.html', {'cart': cart})
